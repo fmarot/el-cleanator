@@ -9,14 +9,14 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
-import com.teamtter.elcleanator.RepositoryPath;
+import com.teamtter.elcleanator.PomInfo;
 
 public class RepositoryParserTest {
 
 	@Test
 	public void should_find_all_the_pom() throws IOException {
-		Stream<RepositoryPath> allRepoPaths = RepositoryParser.fetchAllFrom(new File("./src/test/resources/repo1").toPath());
-		assertEquals(3, allRepoPaths.count(), "all poms should be found");
+		Stream<PomInfo> pomInfos = new RepositoryParser(new PomParser()).fetchAllFrom(new File("./src/test/resources/repo1").toPath());
+		assertEquals(3, pomInfos.count(), "all poms should be found");
 	}
 
 	@Test

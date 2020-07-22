@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,8 +23,8 @@ public class RepositoryPathRepositoryTest {
 		MavenGAV parent = new MavenGAV("groupId1", "parent", "1.0");
 		Path repoPath = new File("./src/test/resources/repo1").toPath();
 		RepositoryPathRepository repo = new RepositoryPathRepository(repoPath, new RepositoryParser(new PomParser()));
-		List<MavenGAV> children = repo.fetchChildrenOf(parent);
-		assertEquals(2, children.size());
+		List<MavenGAV> children = repo.fetchChildrenOf(parent).collect(Collectors.toList());
+		assertEquals(4, children.size());
 		
 		// TODO recursively
 	}

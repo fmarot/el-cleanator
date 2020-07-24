@@ -1,4 +1,4 @@
-package com.teamtter.elcleanator.parser;
+package com.teamtter.elcleanator.repository.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
-import com.teamtter.elcleanator.PomInfo;
+import com.teamtter.elcleanator.repository.domain.PomInfo;
 
 public class RepositoryParserTest {
 
@@ -23,7 +23,7 @@ public class RepositoryParserTest {
 	public void testGetExtension() throws Exception {
 		Path p = null;
 		String extension = null;
-		
+
 		p = Path.of("aa", "bb.com");
 		extension = RepositoryParser.getExtension(p);
 		assertEquals("com", extension);

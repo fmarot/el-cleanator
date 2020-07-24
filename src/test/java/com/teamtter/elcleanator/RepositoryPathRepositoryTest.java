@@ -10,8 +10,10 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import com.teamtter.elcleanator.parser.PomParser;
-import com.teamtter.elcleanator.parser.RepositoryParser;
+import com.teamtter.elcleanator.repository.domain.MavenGAV;
+import com.teamtter.elcleanator.repository.services.PomParser;
+import com.teamtter.elcleanator.repository.services.RepositoryParser;
+import com.teamtter.elcleanator.repository.services.RepositoryPathRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,6 +25,7 @@ public class RepositoryPathRepositoryTest {
 		MavenGAV parent = new MavenGAV("groupId1", "parent", "1.0");
 		Path repoPath = new File("./src/test/resources/repo1").toPath();
 		RepositoryPathRepository repo = new RepositoryPathRepository(repoPath, new RepositoryParser(new PomParser()));
+		repo.scan();
 		List<MavenGAV> children = repo.fetchChildrenOf(parent).collect(Collectors.toList());
 		assertEquals(4, children.size());
 		

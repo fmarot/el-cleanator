@@ -1,4 +1,4 @@
-package com.teamtter.elcleanator;
+package com.teamtter.elcleanator.repository.domain;
 
 import lombok.Value;
 

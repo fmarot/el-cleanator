@@ -1,4 +1,4 @@
-package com.teamtter.elcleanator.parser;
+package com.teamtter.elcleanator.repository.services;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -11,8 +11,8 @@ import org.apache.maven.model.Parent;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
-import com.teamtter.elcleanator.MavenGAV;
-import com.teamtter.elcleanator.PomInfo;
+import com.teamtter.elcleanator.repository.domain.MavenGAV;
+import com.teamtter.elcleanator.repository.domain.PomInfo;
 
 import lombok.extern.slf4j.Slf4j;
 

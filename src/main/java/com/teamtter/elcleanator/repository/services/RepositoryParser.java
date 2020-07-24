@@ -1,4 +1,4 @@
-package com.teamtter.elcleanator.parser;
+package com.teamtter.elcleanator.repository.services;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import com.teamtter.elcleanator.PomInfo;
+import com.teamtter.elcleanator.repository.domain.PomInfo;
 
 public class RepositoryParser {
 

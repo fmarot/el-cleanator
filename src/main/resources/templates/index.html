@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Serving Web Content</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>    
+    
+    <form action="#" th:action="@{/findArtifacts}" th:object="${artifact}" method="post">
+    <div >
+        <div>
+            <label for="groupId" class="col-form-label">groupId</label>
+            <input type="text" th:field="*{groupId}" id="groupId" placeholder="groupId">
+            <span th:if="${#fields.hasErrors('groupId')}" th:errors="*{groupId}" class="text-danger"></span>
+        </div>
+        <div>
+            <label for="artifactId" class="col-form-label">artifactId</label>
+            <input type="text" th:field="*{artifactId}" class="form-control" id="artifactId" placeholder="artifactId">
+            <span th:if="${#fields.hasErrors('artifactId')}" th:errors="*{artifactId}" class="text-danger"></span>
+        </div>
+        <div>
+            <label for="version" class="col-form-label">version</label>
+            <input type="text" th:field="*{version}" class="form-control" id="version" placeholder="version">
+            <span th:if="${#fields.hasErrors('version')}" th:errors="*{version}" class="text-danger"></span>
+        </div>
+    </div>
+    <div>
+        <div>
+            <input type="submit" value="find artifacts">
+        </div>
+    </div>    
+</form>
+</body>
+</html>

@@ -1,10 +1,13 @@
 package com.teamtter.elcleanator.repository.domain;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-@Value
+@Data
+@AllArgsConstructor
 public class MavenGAV {
-	String groupId;
-	String artifactId;
-	String versionId;
+	String	groupId;
+	String	artifactId;
+	String	version;
+
 }

@@ -25,9 +25,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.teamtter.servingwebcontent.GreetingController;
+import com.teamtter.elcleanator.web.ArtifactsController;
 
-@WebMvcTest(controllers = GreetingController.class)
+@WebMvcTest(controllers = ArtifactsController.class)
 public class ServingWebContentApplicationTest {
 
 	@Autowired

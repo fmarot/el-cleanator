@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>artifacts</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>groupId</th>
+				<th>artifactId</th>
+				<th>Version</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="artifact : ${artifacts}">
+				<td th:text="${artifact.groupId}">groupId</td>
+				<td th:text="${artifact.artifactId}">artifactId</td>
+				<td th:text="${artifact.version}">version</td>
+				<!-- <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td> -->
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

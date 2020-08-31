@@ -3,7 +3,11 @@ package com.teamtter.elcleanator.repository.services;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.springframework.util.AntPathMatcher;
+import org.springframework.util.StringUtils;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.BiMap;
@@ -14,12 +18,14 @@ import com.teamtter.elcleanator.repository.domain.PomInfo;
 
 public class RepositoryPathRepository {
 
-	private ListMultimap<MavenGAV, MavenGAV>	parentGavToChildrenGav	= ArrayListMultimap.create();
-	private Path								repoPath;
-	private RepositoryParser					repoParser;
+	private ListMultimap<MavenGAV, MavenGAV> parentGavToChildrenGav = ArrayListMultimap.create();
+	private Path repoPath;
+	private RepositoryParser repoParser;
 
-	private BiMap<MavenGAV, Path>				gavToPath				= HashBiMap.create();
-	
+	private BiMap<MavenGAV, Path> gavToPath = HashBiMap.create();
+
+	private AntPathMatcher matcher = new AntPathMatcher();
+
 	public RepositoryPathRepository(Path repoPath, RepositoryParser repoParser) {
 		this.repoPath = repoPath;
 		this.repoParser = repoParser;
@@ -43,6 +49,26 @@ public class RepositoryPathRepository {
 				Stream.of(parent),
 				(parentGavToChildrenGav.get(parent)).stream()
 						.flatMap(node2 -> fetchChildrenOf(node2)));
+	}
+
+	public List<MavenGAV> findAllMatching(MavenGAV artifactToMatch) {
+		return gavToPath.keySet().stream()
+				.filter(gav -> matches(artifactToMatch, gav))
+				.collect(Collectors.toList());
+	}
+
+	boolean matches(MavenGAV matcher, MavenGAV gav1) {
+		return gavSubMatch(matcher.getGroupId(), gav1.getGroupId())
+				&& gavSubMatch(matcher.getArtifactId(), gav1.getArtifactId())
+				&& gavSubMatch(matcher.getVersion(), gav1.getVersion());
+	}
+
+	private boolean gavSubMatch(String matcherString, String toMatch) {
+		if (StringUtils.isEmpty(matcherString)) {
+			return true;
+		}
+		boolean match = matcher.match(matcherString, toMatch);
+		return match;
 	}
 
 }

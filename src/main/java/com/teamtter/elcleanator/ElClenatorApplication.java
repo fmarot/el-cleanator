@@ -16,7 +16,7 @@ import com.teamtter.elcleanator.repository.services.RepositoryPathRepository;
 @SpringBootApplication
 public class ElClenatorApplication implements CommandLineRunner {
 
-	@Value("${repository-to-scan}")
+	@Value("${repository-to-scan:src/test/resources/repo1}")
 	private Path repositoryToScan;
 
 	@Bean
